@@ -1,0 +1,8 @@
+{
+    "window.titleBarStyle": "custom",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "workbench.colorTheme": "One Monokai",
+    "editor.fontFamily": "'Fira Code', 'monospace', monospace",
+    "editor.fontLigatures": true,
+    "workbench.iconTheme": "file-icons",
+}
