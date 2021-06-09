@@ -1,0 +1,104 @@
+#! /bin/bash
+
+update_repo() {
+    if diff ./.vimrc ~/.vimrc; then
+        echo "*******************************"
+        echo .vimrc not changed, skipping...
+        echo "*******************************"
+    else
+        echo "*******************************"
+        echo .vimrc changed! copying...
+        echo "*******************************"
+        cp ~/.vimrc .vimrc
+    fi
+
+    if diff ./.zshrc ~/.zshrc; then
+        echo "*******************************"
+        echo .zshrc not changed, skipping...
+        echo "*******************************"
+    else
+        echo "*******************************"
+        echo .zshrc changed! copying...
+        echo "*******************************"
+        cp ~/.zshrc .zshrc
+    fi
+
+    if diff ./settings.json ~/.config/Code/User/settings.json; then
+        echo "*******************************"
+        echo VS Code settings.json not changed, skipping...
+        echo "*******************************"
+    else
+        echo "*******************************"
+        echo VS Code settings.json changed! copying...
+        echo "*******************************"
+        cp ~/.config/Code/User/settings.json ./settings.json
+    fi
+        
+    if diff ./conky.conf ~/.config/conky/conky.conf; then
+        echo "*******************************"
+        echo conky.conf not changed, skipping...
+        echo "*******************************"
+    else
+        echo "*******************************"
+        echo conky.conf changed! copying...
+        echo "*******************************"
+        cp ~/.config/conky/conky.conf conky.conf
+    fi
+}
+
+update_local() {
+    echo "Updating local"
+    if diff ./.vimrc ~/.vimrc; then
+        echo "*******************************"
+        echo .vimrc not updated, skipping...
+        echo "*******************************"
+    else
+        echo "*******************************"
+        echo .vimrc updated! copying...
+        echo "*******************************"
+        cp .vimrc ~/.vimrc 
+    fi
+
+    if diff ./.zshrc ~/.zshrc; then
+        echo "*******************************"
+        echo .zshrc not updated, skipping...
+        echo "*******************************"
+    else
+        echo "*******************************"
+        echo .zshrc updated! copying...
+        echo "*******************************"
+        cp .zshrc ~/.zshrc 
+    fi
+
+    if diff ./settings.json ~/.config/Code/User/settings.json; then
+        echo "*******************************"
+        echo VS Code settings.json not updated, skipping...
+        echo "*******************************"
+    else
+        echo "*******************************"
+        echo VS Code settings.json updated! copying...
+        echo "*******************************"
+        cp ./settings.json ~/.config/Code/User/settings.json 
+    fi
+        
+    if diff ./conky.conf ~/.config/conky/conky.conf; then
+        echo "*******************************"
+        echo conky.conf not updated, skipping...
+        echo "*******************************"
+    else
+        echo "*******************************"
+        echo conky.conf updated! copying...
+        echo "*******************************"
+        cp conky.conf ~/.config/conky/conky.conf 
+    fi
+}
+
+if [ "$1" = "repo" ]
+then
+    update_repo
+elif [ "$1" = "local" ]
+then
+    update_local
+else
+    echo "Use 'update local' to update this user's config files; use 'update repo' when pushing changes"
+fi
